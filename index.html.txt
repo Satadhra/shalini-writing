@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shalini Mukherjee — Writing</title>
+<meta name="description" content="Poems, stories, essays, and longer work by Shalini Mukherjee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     CONFIG — change these two things before sharing the link
+     ========================================================= */
+  /* passcode lives in the <script> below, search for AUTHOR_PASSCODE */
+
+  :root{
+    --paper:#FBFCFE;
+    --paper-wash:#EFF4FB;
+    --ink:#152442;
+    --ink-soft:#5B6B85;
+    --blue:#3E6FB0;
+    --blue-deep:#16233D;
+    --blue-pale:#DCE7F7;
+    --line:#C9D8EE;
+    --red:#B0473E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); color:var(--blue-deep); }
+  a{color:inherit;}
+  button{ font-family:inherit; }
+  .wrap{ max-width:800px; margin:0 auto; padding:0 28px; }
+
+  .ink-field{ position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+  .ink-blob{
+    position:absolute; border-radius:50%; filter:blur(60px); opacity:.55;
+    background:radial-gradient(circle at 30% 30%, var(--blue-pale), transparent 70%);
+    animation:drift 26s ease-in-out infinite;
+  }
+  .ink-blob.b2{ background:radial-gradient(circle at 60% 40%, #EAF1FB, transparent 70%); animation-duration:34s; animation-delay:-8s; }
+  .ink-blob.b3{ background:radial-gradient(circle at 50% 50%, #E3ECF9, transparent 70%); animation-duration:40s; animation-delay:-18s; }
+  @keyframes drift{
+    0%{ transform:translate(0,0) scale(1); }
+    33%{ transform:translate(4%, -6%) scale(1.08); }
+    66%{ transform:translate(-5%, 4%) scale(0.96); }
+    100%{ transform:translate(0,0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce){ .ink-blob{ animation:none; } }
+
+  header.site{
+    position:sticky; top:0; z-index:10;
+    background:rgba(251,252,254,.88); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; font-family:'Inter', sans-serif; flex-wrap:wrap; gap:10px;
+  }
+  .brand{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; text-decoration:none; color:var(--ink); }
+  .brand em{ font-style:italic; color:var(--blue); }
+  .navlinks{ display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  .navlinks a, .navlinks button{
+    font-size:.8rem; text-decoration:none; color:var(--ink-soft);
+    letter-spacing:.03em; text-transform:uppercase; background:none; border:none; cursor:pointer;
+    transition:color .2s ease;
+  }
+  .navlinks a:hover, .navlinks button:hover{ color:var(--blue); }
+  .write-btn{
+    border:1px solid var(--blue) !important; color:var(--blue) !important;
+    padding:6px 14px; border-radius:20px;
+  }
+  .write-btn:hover{ background:var(--blue); color:var(--paper) !important; }
+  .author-pill{
+    font-size:.68rem; background:var(--blue-pale); color:var(--blue-deep);
+    padding:4px 10px; border-radius:12px; letter-spacing:.03em;
+  }
+
+  .hero{ padding:80px 0 40px; text-align:center; }
+  .avatar{
+    width:88px; height:88px; border-radius:50%; margin:0 auto 26px;
+    background:linear-gradient(155deg, var(--blue-pale), var(--paper));
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.8rem; color:var(--blue);
+    overflow:hidden;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; }
+  .eyebrow{ font-family:'Inter', sans-serif; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:var(--blue); margin-bottom:18px; }
+  h1.name{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(2.2rem, 5.5vw, 3.6rem); line-height:1.05; margin:0 0 18px; color:var(--blue-deep); }
+  .tagline{ font-size:1.1rem; color:var(--ink-soft); max-width:480px; margin:0 auto 22px; line-height:1.6; }
+  .social-row{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-family:'Inter', sans-serif; }
+  .social-row a{ font-size:.82rem; color:var(--blue); text-decoration:none; border-bottom:1px solid var(--blue-pale); }
+  .social-row a:hover{ border-color:var(--blue); }
+  .contact-row{ margin-top:16px; }
+  .contact-pill{
+    display:inline-block; font-family:'Inter', sans-serif; font-size:.78rem; color:var(--blue-deep);
+    background:var(--blue-pale); padding:8px 18px; border-radius:20px; text-decoration:none; letter-spacing:.01em;
+  }
+  .contact-pill:hover{ background:var(--blue); color:var(--paper); }
+  .stats-row{
+    display:flex; gap:28px; justify-content:center; margin-top:34px;
+    font-family:'Inter', sans-serif; flex-wrap:wrap;
+  }
+  .stat{ text-align:center; }
+  .stat .n{ font-family:'Fraunces', serif; font-size:1.5rem; color:var(--blue-deep); }
+  .stat .l{ font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); }
+
+  .waveline{ width:100%; height:22px; margin:50px 0 0; display:block; }
+  .waveline path{ fill:none; stroke:var(--line); stroke-width:1.4; }
+
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin:56px 0 26px; font-family:'Inter', sans-serif; }
+  .section-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:1.4rem; color:var(--blue-deep); margin:0; }
+  .section-head .count{ font-size:.76rem; color:var(--ink-soft); }
+
+  .filters{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:34px; font-family:'Inter', sans-serif; }
+  .filter-btn{
+    border:1px solid var(--line); background:transparent; color:var(--ink-soft);
+    padding:7px 15px; border-radius:20px; font-size:.78rem; cursor:pointer; transition:all .2s ease;
+  }
+  .filter-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .filter-btn.active{ background:var(--blue-deep); border-color:var(--blue-deep); color:var(--paper); }
+
+  .empty-state{
+    text-align:center; padding:60px 20px; color:var(--ink-soft);
+    font-family:'Inter', sans-serif; font-size:.9rem; border:1px dashed var(--line); border-radius:6px;
+  }
+
+  .post-list{ display:flex; flex-direction:column; }
+  .post-card{ padding:30px 0; border-top:1px solid var(--line); position:relative; }
+  .post-list .post-card:last-child{ border-bottom:1px solid var(--line); }
+  .post-clickable{ cursor:pointer; }
+  .post-meta{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+    font-family:'Inter', sans-serif; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:10px;
+  }
+  .type-badge{
+    background:var(--blue-pale); color:var(--blue-deep); padding:3px 10px; border-radius:10px; font-size:.66rem;
+  }
+  .post-card h3{ font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; margin:0 0 8px; transition:color .2s ease; }
+  .post-clickable:hover h3{ color:var(--blue); }
+  .post-excerpt{ color:var(--ink-soft); font-style:italic; line-height:1.7; margin:0 0 10px; font-size:1rem; }
+  .post-tags{ display:flex; gap:8px; flex-wrap:wrap; font-family:'Inter', sans-serif; }
+  .tag{ font-size:.68rem; color:var(--ink-soft); background:var(--paper-wash); padding:3px 9px; border-radius:10px; }
+  .card-actions{ position:absolute; top:30px; right:0; display:flex; gap:8px; }
+  .icon-btn{
+    font-family:'Inter', sans-serif; font-size:.7rem; background:none; border:1px solid var(--line);
+    color:var(--ink-soft); padding:5px 11px; border-radius:14px; cursor:pointer;
+  }
+  .icon-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .icon-btn.danger:hover{ border-color:var(--red); color:var(--red); }
+
+  .overlay{
+    position:fixed; inset:0; background:var(--paper); z-index:100; overflow-y:auto; display:none;
+  }
+  .overlay.open{ display:block; }
+  .overlay-inner{ max-width:680px; margin:0 auto; padding:56px 28px 120px; }
+  .close-btn{
+    font-family:'Inter', sans-serif; background:none; border:1px solid var(--line); color:var(--ink-soft);
+    border-radius:20px; padding:8px 18px; font-size:.78rem; cursor:pointer; margin-bottom:44px;
+  }
+  .close-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .detail-cover{ width:100%; border-radius:4px; margin-bottom:32px; max-height:340px; object-fit:cover; }
+  .detail-title{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:clamp(1.8rem, 4.5vw, 2.6rem); color:var(--blue-deep); margin:0 0 8px; }
+  .detail-meta{ font-family:'Inter', sans-serif; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .detail-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:34px; font-family:'Inter', sans-serif; }
+  .detail-body{ white-space:pre-wrap; font-size:1.15rem; line-height:2; color:var(--ink); }
+
+  /* about */
+  .about{ background:var(--paper-wash); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:70px 0; margin-top:70px; }
+  .about-text h2{ font-family:'Fraunces', serif; font-weight:500; font-size:1.5rem; color:var(--blue-deep); margin:0 0 16px; }
+  .about-text p{ color:var(--ink-soft); line-height:1.75; font-size:1.03rem; white-space:pre-wrap; }
+
+  footer{ padding:46px 0 64px; font-family:'Inter', sans-serif; font-size:.8rem; color:var(--ink-soft); text-align:center; }
+
+  /* modals (passcode + write form + edit profile) */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(21,36,66,.35); backdrop-filter:blur(2px);
+    display:none; align-items:flex-start; justify-content:center; z-index:200; overflow-y:auto; padding:60px 20px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal{
+    background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:36px;
+    width:100%; max-width:560px; font-family:'Inter', sans-serif;
+  }
+  .modal h3{ font-family:'Fraunces', serif; font-size:1.3rem; color:var(--blue-deep); margin:0 0 20px; font-weight:500; }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:.75rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .field input, .field select, .field textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:4px;
+    font-family:'Newsreader', serif; font-size:1rem; background:var(--paper); color:var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ outline:2px solid var(--blue-pale); border-color:var(--blue); }
+  .field textarea{ min-height:220px; line-height:1.7; resize:vertical; }
+  .field-row{ display:flex; gap:14px; }
+  .field-row .field{ flex:1; }
+  .modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:24px; }
+  .btn{
+    padding:10px 20px; border-radius:20px; border:1px solid var(--line); background:transparent;
+    color:var(--ink-soft); font-size:.85rem; cursor:pointer;
+  }
+  .btn.primary{ background:var(--blue-deep); border-color:var(--blue-deep); color:var(--paper); }
+  .btn.primary:hover{ background:var(--blue); border-color:var(--blue); }
+  .btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .modal-error{ color:var(--red); font-size:.82rem; margin-top:-8px; margin-bottom:14px; display:none; }
+  .modal-error.show{ display:block; }
+  .link-rows{ display:flex; flex-direction:column; gap:10px; }
+  .link-row{ display:flex; gap:8px; }
+  .link-row input{ flex:1; }
+  .small-note{ font-size:.72rem; color:var(--ink-soft); margin-top:-10px; margin-bottom:16px; }
+
+  .loading-msg{ text-align:center; padding:60px 20px; color:var(--ink-soft); font-family:'Inter', sans-serif; font-size:.85rem; }
+</style>
+</head>
+<body>
+
+<div class="ink-field">
+  <div class="ink-blob" style="width:520px;height:520px;top:-10%;left:-10%;"></div>
+  <div class="ink-blob b2" style="width:460px;height:460px;top:30%;right:-12%;"></div>
+  <div class="ink-blob b3" style="width:400px;height:400px;bottom:-15%;left:20%;"></div>
+</div>
+
+<header class="site">
+  <nav class="wrap">
+    <a href="#top" class="brand" id="brand-name">Shalini Mukherjee</a>
+    <div class="navlinks">
+      <a href="#feed">Writing</a>
+      <a href="#about">About</a>
+      <span id="author-status"></span>
+      <button class="write-btn" id="write-toggle" style="display:none;">Menu</button>
+    </div>
+  </nav>
+</header>
+
+<div class="loading-msg" id="loading">Loading…</div>
+
+<main id="app" style="display:none;">
+  <section class="hero wrap" id="top">
+    <div class="avatar" id="avatar"></div>
+    <div class="eyebrow">Writing, collected in one place</div>
+    <h1 class="name" id="hero-name">Shalini Mukherjee</h1>
+    <p class="tagline" id="hero-tagline">Poems, stories, essays, and longer work.</p>
+    <div class="social-row" id="social-row"></div>
+    <div class="contact-row" id="contact-row"></div>
+    <div class="stats-row" id="stats-row"></div>
+    <svg class="waveline" viewBox="0 0 400 22" preserveAspectRatio="none"><path d="M0 11 Q 50 -3, 100 11 T 200 11 T 300 11 T 400 11" /></svg>
+  </section>
+
+  <section id="feed" class="wrap">
+    <div class="section-head"><h2>Writing</h2><span class="count" id="post-count"></span></div>
+    <div class="filters" id="filters"></div>
+    <div class="post-list" id="post-list"></div>
+  </section>
+
+  <section class="about wrap" id="about">
+    <div class="about-text">
+      <h2>About</h2>
+      <p id="about-body"></p>
+    </div>
+  </section>
+</main>
+
+<div class="overlay" id="post-overlay">
+  <div class="overlay-inner">
+    <button class="close-btn" onclick="closePost()">← Back to all writing</button>
+    <div id="detail-cover-wrap"></div>
+    <div class="detail-meta" id="detail-meta"></div>
+    <h2 class="detail-title" id="detail-title"></h2>
+    <div class="detail-tags" id="detail-tags"></div>
+    <div class="detail-body" id="detail-body"></div>
+  </div>
+</div>
+
+<!-- Passcode modal -->
+<div class="modal-backdrop" id="passcode-backdrop">
+  <div class="modal">
+    <h3>Enter the writing passcode</h3>
+    <div class="field">
+      <label for="passcode-input">Passcode</label>
+      <input type="password" id="passcode-input" placeholder="•••••••">
+    </div>
+    <div class="modal-error" id="passcode-error">That passcode isn't right — try again.</div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('passcode-backdrop')">Cancel</button>
+      <button class="btn primary" onclick="checkPasscode()">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- Author menu modal -->
+<div class="modal-backdrop" id="author-menu-backdrop">
+  <div class="modal">
+    <h3>Author tools</h3>
+    <div class="modal-actions" style="justify-content:flex-start; flex-wrap:wrap;">
+      <button class="btn primary" onclick="closeModal('author-menu-backdrop'); openPostForm();">New piece of writing</button>
+      <button class="btn" onclick="closeModal('author-menu-backdrop'); openProfileForm();">Edit profile & about</button>
+      <button class="btn" onclick="lockAuthor()">Lock (sign out)</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('author-menu-backdrop')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- New / edit post modal -->
+<div class="modal-backdrop" id="post-form-backdrop">
+  <div class="modal">
+    <h3 id="post-form-title">New piece of writing</h3>
+    <div class="field-row">
+      <div class="field">
+        <label for="pf-type">Type</label>
+        <select id="pf-type">
+          <option>Poem</option>
+          <option>Story</option>
+          <option>Blog</option>
+          <option>Thesis</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="pf-date">Date</label>
+        <input type="date" id="pf-date">
+      </div>
+    </div>
+    <div class="field">
+      <label for="pf-title">Title</label>
+      <input type="text" id="pf-title" placeholder="Give it a title">
+    </div>
+    <div class="field">
+      <label for="pf-tags">Tags (comma separated)</label>
+      <input type="text" id="pf-tags" placeholder="e.g. love, monsoon, memory">
+    </div>
+    <div class="field">
+      <label for="pf-cover">Cover image URL (optional)</label>
+      <input type="text" id="pf-cover" placeholder="https://...">
+    </div>
+    <div class="field">
+      <label for="pf-excerpt">Short excerpt (optional — shown on the list)</label>
+      <input type="text" id="pf-excerpt" placeholder="One line that pulls the reader in">
+    </div>
+    <div class="field">
+      <label for="pf-body">Full text</label>
+      <textarea id="pf-body" placeholder="Write here. Leave a blank line between stanzas or paragraphs."></textarea>
+    </div>
+    <div class="modal-error" id="post-form-error">Give it at least a title and some text.</div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('post-form-backdrop')">Cancel</button>
+      <button class="btn primary" onclick="savePost()">Publish</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit profile modal -->
+<div class="modal-backdrop" id="profile-form-backdrop">
+  <div class="modal">
+    <h3>Edit profile & about</h3>
+    <div class="field">
+      <label for="pr-name">Name</label>
+      <input type="text" id="pr-name">
+    </div>
+    <div class="field">
+      <label for="pr-tagline">Tagline (shown under your name)</label>
+      <input type="text" id="pr-tagline">
+    </div>
+    <div class="field">
+      <label for="pr-avatar">Profile picture URL</label>
+      <input type="text" id="pr-avatar" placeholder="https://...">
+      <div class="small-note" style="margin-top:6px;">Paste a link to your photo (from Google Photos, Imgur, etc.) — it fills the circle at the top of the page.</div>
+    </div>
+    <div class="field">
+      <label for="pr-contact-email">Contact email — for publishers, universities, PhD/research inquiries</label>
+      <input type="text" id="pr-contact-email" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="pr-about">About section</label>
+      <textarea id="pr-about" style="min-height:140px;"></textarea>
+    </div>
+    <div class="field">
+      <label>Social / contact links</label>
+      <div class="link-rows" id="pr-links"></div>
+      <button class="btn" style="margin-top:10px;" onclick="addLinkRow('', '')">+ Add link</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('profile-form-backdrop')">Cancel</button>
+      <button class="btn primary" onclick="saveProfile()">Save</button>
+    </div>
+  </div>
+</div>
+
+<footer><div class="wrap"><p>© <span id="year"></span> <span id="footer-name">Shalini Mukherjee</span>. All work remains the property of its author.</p></div></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* =========================================================
+   CONFIG #1 — Firebase (needed for the site to save/load data
+   on independent hosting like Netlify or GitHub Pages)
+
+   1. Go to https://console.firebase.google.com and create a
+      free project.
+   2. In the project: Build → Firestore Database → Create
+      database (any region, doesn't matter for this site).
+   3. In Firestore, go to the "Rules" tab and replace the
+      rules with:
+
+        rules_version = '2';
+        service cloud.firestore {
+          match /databases/{database}/documents {
+            match /site/{doc} {
+              allow read: if true;
+              allow write: if true;
+            }
+          }
+        }
+
+      Note: this keeps things simple by only gating writes at
+      the passcode in this app, not at the database itself —
+      good enough for a personal/friends site, but anyone who
+      really dug into the page source and knew Firestore could
+      write to it directly. If that ever matters more, the next
+      step up is adding real Firebase Authentication.
+   4. Back in the project: click the gear icon → Project
+      settings → scroll to "Your apps" → click the </> (web)
+      icon → register an app (any nickname) → it will show you
+      a firebaseConfig object. Copy those values into the
+      object below.
+   ========================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyACiNF-X7xz4WOl-mkPFHINOmKDNbe4q6k",
+  authDomain: "shalini-writes-62022.firebaseapp.com",
+  projectId: "shalini-writes-62022",
+  storageBucket: "shalini-writes-62022.firebasestorage.app",
+  messagingSenderId: "236109222859",
+  appId: "1:236109222859:web:1eb3703cad85162f531c4e"
+};
+let db = null;
+
+/* =========================================================
+   CONFIG #2 — change this before sharing the link with her
+   ========================================================= */
+const AUTHOR_PASSCODE = "shalini-writes";
+const ADMIN_PASSCODE = "admin-change-me";
+
+let profile = {
+  name: "Shalini Mukherjee",
+  tagline: "Poems, stories, essays, and longer work — collected in one place.",
+  avatarUrl: "",
+  contactEmail: "salinimukherjee70@gmail.com",
+  about: "This is where I keep the things I write — poems, stories, blog posts, and longer academic work. Replace this paragraph with your own words.",
+  links: []
+};
+let posts = [];
+let isAuthor = false;
+let authorRole = null; // 'author' or 'admin'
+let activeFilter = 'All';
+let editingId = null;
+
+/* ---------- hidden login access (not shown publicly) ----------
+   Two ways in, neither visible on the page:
+   1. Visit the site with #write at the end of the URL, e.g. yoursite.com/#write
+   2. Click the circular profile picture 5 times in a row
+   Both open the same passcode prompt. */
+let avatarClicks = 0;
+let avatarClickTimer = null;
+
+/* ---------- storage (Firestore) ---------- */
+async function loadData(){
+  try{
+    const profSnap = await db.collection('site').doc('profile').get();
+    if(profSnap.exists) profile = { ...profile, ...profSnap.data() };
+  }catch(e){ console.error('Could not load profile', e); }
+  try{
+    const postsSnap = await db.collection('site').doc('posts').get();
+    if(postsSnap.exists && Array.isArray(postsSnap.data().items)) posts = postsSnap.data().items;
+  }catch(e){ console.error('Could not load posts', e); posts = []; }
+}
+async function saveProfileData(){
+  try{
+    await db.collection('site').doc('profile').set(profile);
+  }catch(e){ alert('Could not save profile: ' + e.message); }
+}
+async function savePostsData(){
+  try{
+    await db.collection('site').doc('posts').set({ items: posts });
+  }catch(e){ alert('Could not save writing: ' + e.message); }
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function formatDate(iso){
+  if(!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+}
+function readingTime(body){
+  const words = (body||'').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words/200));
+}
+function initials(name){
+  return (name||'').split(' ').filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('');
+}
+
+/* ---------- render ---------- */
+function renderProfile(){
+  document.getElementById('brand-name').textContent = profile.name;
+  document.getElementById('hero-name').textContent = profile.name;
+  document.getElementById('hero-tagline').textContent = profile.tagline;
+  document.getElementById('about-body').textContent = profile.about;
+  document.getElementById('footer-name').textContent = profile.name;
+  const avatar = document.getElementById('avatar');
+  avatar.innerHTML = profile.avatarUrl
+    ? `<img src="${esc(profile.avatarUrl)}" alt="${esc(profile.name)}">`
+    : initials(profile.name);
+  const socialRow = document.getElementById('social-row');
+  socialRow.innerHTML = (profile.links||[]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('');
+  const contactRow = document.getElementById('contact-row');
+  contactRow.innerHTML = profile.contactEmail
+    ? `<a class="contact-pill" href="mailto:${esc(profile.contactEmail)}">For publishing &amp; research inquiries — ${esc(profile.contactEmail)}</a>`
+    : '';
+
+  const counts = { Poem:0, Story:0, Blog:0, Thesis:0, Other:0 };
+  posts.forEach(p => { counts[p.type] = (counts[p.type]||0) + 1; });
+  const statsRow = document.getElementById('stats-row');
+  const parts = [];
+  if(counts.Poem) parts.push(['Poems', counts.Poem]);
+  if(counts.Story) parts.push(['Stories', counts.Story]);
+  if(counts.Blog) parts.push(['Blog posts', counts.Blog]);
+  if(counts.Thesis) parts.push(['Thesis work', counts.Thesis]);
+  if(counts.Other) parts.push(['Other', counts.Other]);
+  statsRow.innerHTML = parts.map(([l,n])=>`<div class="stat"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join('');
+}
+
+function renderFilters(){
+  const types = ['All', ...new Set(posts.map(p=>p.type))];
+  document.getElementById('filters').innerHTML = types.map(t=>
+    `<button class="filter-btn ${t===activeFilter?'active':''}" data-t="${esc(t)}">${esc(t)}</button>`
+  ).join('');
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ activeFilter = btn.dataset.t; renderFilters(); renderList(); });
+  });
+}
+
+function renderList(){
+  const sorted = [...posts].sort((a,b)=> new Date(b.date) - new Date(a.date));
+  const shown = activeFilter==='All' ? sorted : sorted.filter(p=>p.type===activeFilter);
+  document.getElementById('post-count').textContent = `${shown.length} piece${shown.length!==1?'s':''}`;
+  const listEl = document.getElementById('post-list');
+
+  if(shown.length===0){
+    listEl.innerHTML = `<div class="empty-state">${posts.length===0 ? "Nothing published yet. Click “Write” above to add the first piece." : "Nothing in this category yet."}</div>`;
+    return;
+  }
+
+  listEl.innerHTML = shown.map(p=>{
+    const tags = (p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+    return `
+    <article class="post-card">
+      <div class="post-clickable" data-id="${p.id}">
+        <div class="post-meta"><span class="type-badge">${esc(p.type)}</span><span>${formatDate(p.date)} · ${readingTime(p.body)} min read</span></div>
+        <h3>${esc(p.title)}</h3>
+        ${p.excerpt ? `<p class="post-excerpt">${esc(p.excerpt)}</p>` : ''}
+        <div class="post-tags">${tags}</div>
+      </div>
+      ${isAuthor ? `<div class="card-actions">
+        <button class="icon-btn" onclick="openPostForm('${p.id}')">Edit</button>
+        <button class="icon-btn danger" onclick="deletePost('${p.id}')">Delete</button>
+      </div>` : ''}
+    </article>`;
+  }).join('');
+
+  listEl.querySelectorAll('.post-clickable').forEach(el=>{
+    el.addEventListener('click', ()=> openPost(el.dataset.id));
+  });
+}
+
+function renderAuthorUI(){
+  document.getElementById('author-status').innerHTML = isAuthor
+    ? `<span class="author-pill">${authorRole === 'admin' ? 'Admin mode' : 'Author mode'}</span>` : '';
+  document.getElementById('write-toggle').style.display = isAuthor ? 'inline-block' : 'none';
+  renderList();
+}
+
+/* ---------- post detail ---------- */
+function openPost(id){
+  const p = posts.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('detail-cover-wrap').innerHTML = p.coverImageUrl ? `<img class="detail-cover" src="${esc(p.coverImageUrl)}" alt="">` : '';
+  document.getElementById('detail-meta').textContent = `${p.type} · ${formatDate(p.date)} · ${readingTime(p.body)} min read`;
+  document.getElementById('detail-title').textContent = p.title;
+  document.getElementById('detail-tags').innerHTML = (p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  document.getElementById('detail-body').textContent = p.body;
+  document.getElementById('post-overlay').classList.add('open');
+  window.scrollTo(0,0);
+  document.body.style.overflow = 'hidden';
+}
+function closePost(){
+  document.getElementById('post-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ---------- modals ---------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+document.getElementById('write-toggle').addEventListener('click', ()=>{
+  if(isAuthor){ openModal('author-menu-backdrop'); }
+  else{ openLoginPrompt(); }
+});
+function openLoginPrompt(){
+  document.getElementById('passcode-input').value = '';
+  document.getElementById('passcode-error').classList.remove('show');
+  openModal('passcode-backdrop');
+}
+function checkPasscode(){
+  const val = document.getElementById('passcode-input').value;
+  if(val === AUTHOR_PASSCODE || val === ADMIN_PASSCODE){
+    isAuthor = true;
+    authorRole = (val === ADMIN_PASSCODE) ? 'admin' : 'author';
+    closeModal('passcode-backdrop');
+    renderAuthorUI();
+    openModal('author-menu-backdrop');
+  }else{
+    document.getElementById('passcode-error').classList.add('show');
+  }
+}
+function lockAuthor(){
+  isAuthor = false;
+  authorRole = null;
+  closeModal('author-menu-backdrop');
+  renderAuthorUI();
+}
+document.getElementById('passcode-input').addEventListener('keydown', e=>{ if(e.key==='Enter') checkPasscode(); });
+
+/* hidden entry points — nothing about these appears on the page */
+document.getElementById('avatar').addEventListener('click', ()=>{
+  avatarClicks++;
+  clearTimeout(avatarClickTimer);
+  avatarClickTimer = setTimeout(()=>{ avatarClicks = 0; }, 2500);
+  if(avatarClicks >= 5){
+    avatarClicks = 0;
+    if(!isAuthor) openLoginPrompt();
+  }
+});
+
+/* ---------- post form ---------- */
+function openPostForm(id){
+  editingId = id || null;
+  document.getElementById('post-form-error').classList.remove('show');
+  if(id){
+    const p = posts.find(x=>x.id===id);
+    document.getElementById('post-form-title').textContent = 'Edit piece';
+    document.getElementById('pf-type').value = p.type;
+    document.getElementById('pf-date').value = p.date;
+    document.getElementById('pf-title').value = p.title;
+    document.getElementById('pf-tags').value = (p.tags||[]).join(', ');
+    document.getElementById('pf-cover').value = p.coverImageUrl || '';
+    document.getElementById('pf-excerpt').value = p.excerpt || '';
+    document.getElementById('pf-body').value = p.body;
+  }else{
+    document.getElementById('post-form-title').textContent = 'New piece of writing';
+    document.getElementById('pf-type').value = 'Poem';
+    document.getElementById('pf-date').value = new Date().toISOString().slice(0,10);
+    document.getElementById('pf-title').value = '';
+    document.getElementById('pf-tags').value = '';
+    document.getElementById('pf-cover').value = '';
+    document.getElementById('pf-excerpt').value = '';
+    document.getElementById('pf-body').value = '';
+  }
+  openModal('post-form-backdrop');
+}
+async function savePost(){
+  const title = document.getElementById('pf-title').value.trim();
+  const body = document.getElementById('pf-body').value.trim();
+  if(!title || !body){
+    document.getElementById('post-form-error').classList.add('show');
+    return;
+  }
+  const data = {
+    type: document.getElementById('pf-type').value,
+    date: document.getElementById('pf-date').value || new Date().toISOString().slice(0,10),
+    title,
+    tags: document.getElementById('pf-tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    coverImageUrl: document.getElementById('pf-cover').value.trim(),
+    excerpt: document.getElementById('pf-excerpt').value.trim(),
+    body
+  };
+  if(editingId){
+    const idx = posts.findIndex(x=>x.id===editingId);
+    posts[idx] = { ...posts[idx], ...data };
+  }else{
+    posts.push({ id: 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2,7), ...data });
+  }
+  await savePostsData();
+  closeModal('post-form-backdrop');
+  renderProfile();
+  renderFilters();
+  renderList();
+}
+async function deletePost(id){
+  if(!confirm('Delete this piece? This cannot be undone.')) return;
+  posts = posts.filter(p=>p.id!==id);
+  await savePostsData();
+  renderProfile();
+  renderFilters();
+  renderList();
+}
+
+/* ---------- profile form ---------- */
+function addLinkRow(label, url){
+  const wrap = document.getElementById('pr-links');
+  const row = document.createElement('div');
+  row.className = 'link-row';
+  row.innerHTML = `<input type="text" placeholder="Label (e.g. Instagram)" class="pr-link-label" value="${esc(label)}">
+                    <input type="text" placeholder="URL" class="pr-link-url" value="${esc(url)}">
+                    <button class="icon-btn danger" type="button" onclick="this.parentElement.remove()">Remove</button>`;
+  wrap.appendChild(row);
+}
+function openProfileForm(){
+  document.getElementById('pr-name').value = profile.name;
+  document.getElementById('pr-tagline').value = profile.tagline;
+  document.getElementById('pr-avatar').value = profile.avatarUrl;
+  document.getElementById('pr-contact-email').value = profile.contactEmail || '';
+  document.getElementById('pr-about').value = profile.about;
+  document.getElementById('pr-links').innerHTML = '';
+  (profile.links||[]).forEach(l=>addLinkRow(l.label, l.url));
+  openModal('profile-form-backdrop');
+}
+async function saveProfile(){
+  const links = [...document.querySelectorAll('#pr-links .link-row')].map(row=>({
+    label: row.querySelector('.pr-link-label').value.trim(),
+    url: row.querySelector('.pr-link-url').value.trim()
+  })).filter(l=>l.label && l.url);
+  profile = {
+    name: document.getElementById('pr-name').value.trim() || profile.name,
+    tagline: document.getElementById('pr-tagline').value.trim(),
+    avatarUrl: document.getElementById('pr-avatar').value.trim(),
+    contactEmail: document.getElementById('pr-contact-email').value.trim(),
+    about: document.getElementById('pr-about').value.trim(),
+    links
+  };
+  await saveProfileData();
+  closeModal('profile-form-backdrop');
+  renderProfile();
+}
+
+/* ---------- boot ---------- */
+(async function init(){
+  if(firebaseConfig.apiKey.startsWith('PASTE_YOUR')){
+    document.getElementById('loading').innerHTML =
+      'This site isn\'t connected to a database yet. Open this file and follow the "CONFIG #1 — Firebase" ' +
+      'instructions near the top of the &lt;script&gt; section, then re-upload it.';
+    return;
+  }
+  try{
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  }catch(e){
+    document.getElementById('loading').textContent = 'Could not connect to the database: ' + e.message;
+    return;
+  }
+  await loadData();
+  renderProfile();
+  renderFilters();
+  renderList();
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  if(location.hash === '#write'){ openLoginPrompt(); }
+})();
+</script>
+
+</body>
+</html>
